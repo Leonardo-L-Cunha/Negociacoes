@@ -5,7 +5,7 @@ export class Negociacao {
         this.valor = valor;
     }
     get date() {
-        const data = new Date(this._data.getTime());
+        const data = new Date(this._data);
         return data;
     }
     get result() {

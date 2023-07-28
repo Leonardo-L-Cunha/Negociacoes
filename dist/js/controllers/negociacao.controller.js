@@ -35,6 +35,6 @@ export class NegociacaoController {
     }
     verificaData(data) {
         return (data.getDay() > DiasDaSemana.DOMINGO &&
-            data.getDate() < DiasDaSemana.SABADO);
+            data.getDay() < DiasDaSemana.SABADO);
     }
 }
