@@ -1,8 +1,10 @@
+import { inspect } from '../decorators/inspect.js';
+import { tempoDeExecucao } from '../decorators/logar.tempo.de.execucao.js';
+
 export abstract class View<T> {
   protected element: HTMLElement;
-  private escapar = false;
 
-  constructor(seletor: string, escapar?: boolean) {
+  constructor(seletor: string) {
     const element = document.querySelector(seletor);
 
     if (element) {
@@ -12,17 +14,12 @@ export abstract class View<T> {
         `O Seletor ${seletor} nao foi encontrado na DOM, por favor verifique!`
       );
     }
-
-    if (escapar) {
-      this.escapar = escapar;
-    }
   }
 
+  @tempoDeExecucao(true)
+  @inspect()
   public update(model: T): void {
     let template = this.template(model);
-    if (this.escapar) {
-      template = template.replace(/<script>[\s\S]*?<\/script>/, '');
-    }
     this.element.innerHTML = template;
   }
 

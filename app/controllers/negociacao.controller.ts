@@ -1,3 +1,4 @@
+import { tempoDeExecucao } from '../decorators/logar.tempo.de.execucao.js';
 import { DiasDaSemana } from '../enums/dias.da.semana.js';
 import { Negociacao } from '../models/negociacao.js';
 import { Negociacoes } from '../models/negociacoes.js';
@@ -9,7 +10,7 @@ export class NegociacaoController {
   private inputQuantidade: HTMLInputElement;
   private inputValor: HTMLInputElement;
   private negociacoes = new Negociacoes();
-  private negociacoesView = new NegociacaoView('#negociacoesView', true);
+  private negociacoesView = new NegociacaoView('#negociacoesView');
   private mensagemView = new MensagemView('#mensagemView');
 
   constructor() {
@@ -21,6 +22,7 @@ export class NegociacaoController {
     this.negociacoesView.update(this.negociacoes);
   }
 
+  @tempoDeExecucao()
   public adiciona(): void {
     const negociacao = Negociacao.criaDe(
       this.inputData.value,
