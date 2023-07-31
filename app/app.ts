@@ -10,7 +10,17 @@ if (form) {
     negociacaoController.adiciona();
   });
 } else {
-  throw new Error(
+  throw Error(
     'Nao foi possivel inicializar a aplicação, verifique se o form existe'
   );
+}
+
+const botaoImporta = document.querySelector('#botao-importa');
+
+if (botaoImporta) {
+  botaoImporta.addEventListener('click', () => {
+    negociacaoController.importaDados();
+  });
+} else {
+  throw Error(' Nao foi possivel encontrar o botao, por favor verifique!');
 }

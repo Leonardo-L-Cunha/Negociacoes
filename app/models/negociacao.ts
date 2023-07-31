@@ -26,4 +26,12 @@ export class Negociacao {
 
     return new Negociacao(date, quantidade, valor);
   }
+
+  public ehIgual(negociacao: Negociacao): boolean {
+    return (
+      this.date.getDate() === negociacao.date.getDate() &&
+      this.date.getMonth() === negociacao.date.getMonth() &&
+      this.date.getFullYear() === negociacao.date.getFullYear()
+    );
+  }
 }
